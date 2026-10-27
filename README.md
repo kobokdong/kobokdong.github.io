@@ -1,6 +1,6 @@
 # kobokdong Portfolio
 
-C++·Qt 통신 스레드, STM32 제어, Linux Device Driver 프로젝트를 소개하는 한국어 정적 포트폴리오입니다.
+C++·Qt 통신 스레드, STM32 제어, Linux Device Driver, FPGA 시계·스톱워치 프로젝트를 소개하는 한국어 정적 포트폴리오입니다.
 
 ## 구성
 
@@ -8,6 +8,7 @@ C++·Qt 통신 스레드, STM32 제어, Linux Device Driver 프로젝트를 소�
 - 차량 프로젝트: 팀 전체 기능과 개인 담당인 **C++ 기반 Qt UART 통신 스레드 구현** 구분
 - 모터 프로젝트: UART·버튼 입력, 타이머, PWM 및 상태 처리 설명
 - Linux 프로젝트: Jetson Orin Nano 스마트 선풍기의 드라이버·사용자 앱·Device Tree 구조 소개. 개인 담당은 BMP180 센서 드라이버와 사용자 앱 통합. 모터·EC11·LED 바 드라이버는 시스템 연동 맥락으로 구분
+- FPGA 프로젝트: Linux Driver 바로 다음의 네 번째 프로젝트. Basys3의 분·초 시계·스톱워치, RTL 모듈 구조, FSM·버튼·FND, 기능 검증, 트러블슈팅·회고 및 요소기술 소개
 - 키보드 탐색, 본문 바로가기, 모바일 레이아웃, 인쇄 스타일 지원
 
 ## GitHub Pages 게시
@@ -47,3 +48,11 @@ Linux 프로젝트는 저장소 소스코드 기준이며, 대상 Jetson 보드�
 - 시연·트러블슈팅·결과: 36–38장
 
 발표 자료 17장과 26장에서 LED 온도 구간 표기가 달라, 웹페이지에는 칸별 온도 임계값을 싣지 않았습니다. 시연 결과는 발표 자료에 보고된 결과이며, 포트폴리오 수정 과정에서 보드 시험을 재실행하지 않았습니다. 발표 자료 전체와 78 MB 시연 영상은 웹사이트에 게시하지 않았습니다.
+
+## FPGA 프로젝트 반영
+
+- 순서: 차량 → 모터 → Linux Driver → FPGA 분·초 시계 & 스톱워치 (`#fpga-clock`).
+- [MINSEC_CLOCK_N_STOPWATCH-FPGA-](https://github.com/kobokdong/MINSEC_CLOCK_N_STOPWATCH-FPGA-): README, top_clock_stopwatch·mode_selector·min_sec_clock·stopwatch·mux_clock_or_stopwatch 및 표시·입력 모듈, 테스트벤치 설명을 근거로 작성했습니다.
+- 발표 자료 `minsec_Clock_n_Stopwatch(w.FPGA)` 2–19장(프로젝트·코드·검증), 20–24장(트러블슈팅·회고), 25–45장(요소기술)을 반영했습니다.
+- 18장의 7,256,097 checks / 71,470 functional ms PASS 기록은 발표 자료의 기능 시뮬레이션 결과입니다. 이번 수정에서 Vivado 시뮬레이션이나 실보드 시험을 다시 수행하지 않았습니다.
+- 파이프라인·출력 레지스터, 제어 신호 지연 정렬, 배치·배선 후 STA 및 Fan-out 실측은 개선·검증 과제이며 완료 성과로 기재하지 않았습니다.
